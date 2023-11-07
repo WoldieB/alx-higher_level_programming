@@ -1,22 +1,15 @@
 #!/usr/bin/python3
-"""Module to read lines from file"""
+"""Defines a file-appending function."""
 
 
-def read_lines(filename="", nb_lines=0):
-    """Read `nb_lines` lines from `filename`
-    If `nb_lines` <= 0 read all lines. Otherwise, read up to `nb_lines`
-        or EOF, whichever comes first.
+def append_write(filename="", text=""):
+    """Appends a string to the end of a UTF8 text file.
 
     Args:
-        filename (str): name of file to read
-        nb_lines (int): maximum number of lines to read, or if <= 0, all lines
+        filename (str): The name of the file to append to.
+        text (str): The string to append to the file.
+    Returns:
+        The number of characters appended.
     """
-    with open(filename, 'r', encoding='utf8') as f:
-        if nb_lines <= 0:
-            print(f.read(), end="")
-        else:
-            for line in f:
-                if nb_lines == 0:
-                    break
-                print(line, end="")
-                nb_lines -= 1
+    with open(filename, "a", encoding="utf-8") as f:
+        return f.write(text)
